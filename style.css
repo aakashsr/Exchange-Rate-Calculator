@@ -29,9 +29,11 @@ p {
 .btn {
     color: #fff;
     background-color: var(--primary-color);
-    cursor: pointer border-radius: 5px;
+    cursor: pointer;
+    border-radius: 5px;
     font-size: 12px;
     padding: 5px 12px;
+    border: none;
 }
 
 .money-img {
