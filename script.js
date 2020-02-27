@@ -8,22 +8,11 @@ const amountEl_two = document.getElementById("amount-two");
 const rateEl = document.getElementById("rate");
 const swap = document.getElementById("swap");
 
-// console.log(amountEl_one.value);
-
 // Fetch exchange rates and update DOM
 
 function calculate(jsonData) {
   currencyOne = currencyEl_one.value;
   currencyTwo = currencyEl_two.value;
-  //   amountEl_two.value = jsonData.rates[`${currencyTwo}`];
-
-  // fetch(`https://api.exchangerate-api.com/v4/latest/${currencyOne}`)
-  //   .then(data => data.json())
-  //   .then(
-  //     jsonData =>
-  //       (amountEl_two.value =
-  //         jsonData.rates[`${currencyTwo}`] * amountEl_one.value)
-  //   );
 
   fetch(`https://api.exchangerate-api.com/v4/latest/${currencyOne}`)
     .then(data => data.json())
@@ -36,9 +25,12 @@ function calculate(jsonData) {
 
 calculate();
 
-// fetch("https://api.exchangerate-api.com/v4/latest/USD")
-//   .then(data => data.json())
-//   .then(calculate);
+function swapCurrencies() {
+  const temp = currencyEl_one.value;
+  currencyEl_one.value = currencyEl_two.value;
+  currencyEl_two.value = temp;
+  calculate();
+}
 
 // Event Listeners
 
@@ -46,3 +38,4 @@ currencyEl_one.addEventListener("change", calculate);
 amountEl_one.addEventListener("change", calculate);
 currencyEl_two.addEventListener("change", calculate);
 amountEl_two.addEventListener("change", calculate);
+swap.addEventListener("click", swapCurrencies);
